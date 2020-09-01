@@ -1,0 +1,39 @@
+
+server:
+  port: 9999
+spring:
+  thymeleaf:
+    cache: false
+  datasource:
+    act:
+      jdbc-url: jdbc:mysql://192.168.99.64:3306/activiti?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT
+      username: root
+      password: 1234
+      driver-class-name: com.mysql.jdbc.Driver
+    ihrm:
+      jdbc-url: jdbc:mysql://192.168.99.64:3306/activiti?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT
+      username: root
+      password: 1234
+      driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+  mvc:
+    static-path-pattern: /**
+  activiti:
+    db-history-used: true
+    history-level: full
+mybatis:
+  type-aliases-package: com.itcast.actviti7demo.model
+  mapper-locations: classpath:mapper/*.xml
+  #type-aliases-package:com.itcast.actviti7demo.model
+  #mapper-locations:classpath:mapper/*.xml
+  # resources:
+  #     static-locations: [classpath:/static/]
+#   thymeleaf:
+#       prefix: classpath:/templates/
+#       suffix: .html
+#  thymeleaf:
+#    prefix: classpath:/static
+#    suffix: .ftl
+#logging:
+#  level:
+#    org: debug

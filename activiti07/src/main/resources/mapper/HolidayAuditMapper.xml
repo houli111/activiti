@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itcast.actviti7demo.mapper.HolidayAuditMapper">
+  <resultMap id="BaseResultMap" type="com.itcast.actviti7demo.model.HolidayAudit">
+    <result column="holidayAudit_id" jdbcType="VARCHAR" property="holidayauditId" />
+    <result column="employee_name" jdbcType="VARCHAR" property="employeeName" />
+    <result column="audit_name" jdbcType="VARCHAR" property="auditName" />
+    <result column="auditInfo" jdbcType="VARCHAR" property="auditinfo" />
+    <result column="audit_type" jdbcType="VARCHAR" property="auditType" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+  </resultMap>
+  <insert id="insert" parameterType="com.itcast.actviti7demo.model.HolidayAudit">
+    insert into holidayaudit_c (holidayAudit_id, employee_name, audit_name, 
+      auditInfo, audit_type, status, 
+      createtime)
+    values (#{holidayauditId,jdbcType=VARCHAR}, #{employeeName,jdbcType=VARCHAR}, #{auditName,jdbcType=VARCHAR}, 
+      #{auditinfo,jdbcType=VARCHAR}, #{auditType,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.itcast.actviti7demo.model.HolidayAudit">
+    insert into holidayaudit_c
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="holidayauditId != null">
+        holidayAudit_id,
+      </if>
+      <if test="employeeName != null">
+        employee_name,
+      </if>
+      <if test="auditName != null">
+        audit_name,
+      </if>
+      <if test="auditinfo != null">
+        auditInfo,
+      </if>
+      <if test="auditType != null">
+        audit_type,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="holidayauditId != null">
+        #{holidayauditId,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeName != null">
+        #{employeeName,jdbcType=VARCHAR},
+      </if>
+      <if test="auditName != null">
+        #{auditName,jdbcType=VARCHAR},
+      </if>
+      <if test="auditinfo != null">
+        #{auditinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="auditType != null">
+        #{auditType,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="login"   resultType="com.itcast.actviti7demo.model.UserLoginDto" >
+    select
+    user,pwd
+    from user
+    where 1=1
+    <if test="user != null">
+     and  user=#{user}
+    </if>
+    <if test="pwd != null">
+      and  pwd=#{pwd}
+    </if>
+  </select>
+</mapper>

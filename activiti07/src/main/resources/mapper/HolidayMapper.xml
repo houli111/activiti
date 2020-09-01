@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itcast.actviti7demo.mapper.HolidayMapper">
+  <resultMap id="BaseResultMap" type="com.itcast.actviti7demo.model.Holiday">
+    <id column="holiday_id" jdbcType="VARCHAR" property="holidayId" />
+    <result column="employee_name" jdbcType="VARCHAR" property="employeeName" />
+    <result column="reason" jdbcType="VARCHAR" property="reason" />
+    <result column="holiday_num" jdbcType="DECIMAL" property="holidayNum" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="endtime" jdbcType="TIMESTAMP" property="endtime" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="processinstanceId" jdbcType="VARCHAR" property="processinstanceid" />
+    <result column="details" jdbcType="VARCHAR" property="details" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    holiday_id, employee_name, reason, holiday_num, createtime, endtime, status, processinstanceId, 
+    details
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from holiday_c
+    where holiday_id = #{holidayId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from holiday_c
+    where holiday_id = #{holidayId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.itcast.actviti7demo.model.Holiday">
+    insert into holiday_c (holiday_id, employee_name, reason, 
+      holiday_num, createtime, endtime, 
+      status, processinstanceId, details
+      )
+    values (#{holidayId,jdbcType=VARCHAR}, #{employeeName,jdbcType=VARCHAR}, #{reason,jdbcType=VARCHAR}, 
+      #{holidayNum,jdbcType=DECIMAL}, #{createtime,jdbcType=TIMESTAMP}, #{endtime,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=VARCHAR}, #{processinstanceid,jdbcType=VARCHAR}, #{details,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.itcast.actviti7demo.model.Holiday">
+    insert into holiday_c
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="holidayId != null">
+        holiday_id,
+      </if>
+      <if test="employeeName != null">
+        employee_name,
+      </if>
+      <if test="reason != null">
+        reason,
+      </if>
+      <if test="holidayNum != null">
+        holiday_num,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="endtime != null">
+        endtime,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="processinstanceid != null">
+        processinstanceId,
+      </if>
+      <if test="details != null">
+        details,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="holidayId != null">
+        #{holidayId,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeName != null">
+        #{employeeName,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null">
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="holidayNum != null">
+        #{holidayNum,jdbcType=DECIMAL},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null">
+        #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="processinstanceid != null">
+        #{processinstanceid,jdbcType=VARCHAR},
+      </if>
+      <if test="details != null">
+        #{details,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.itcast.actviti7demo.model.Holiday">
+    update holiday_c
+    <set>
+      <if test="employeeName != null">
+        employee_name = #{employeeName,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null">
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="holidayNum != null">
+        holiday_num = #{holidayNum,jdbcType=DECIMAL},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null">
+        endtime = #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="processinstanceid != null">
+        processinstanceId = #{processinstanceid,jdbcType=VARCHAR},
+      </if>
+      <if test="details != null">
+        details = #{details,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where holiday_id = #{holidayId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.itcast.actviti7demo.model.Holiday">
+    update holiday_c
+    set employee_name = #{employeeName,jdbcType=VARCHAR},
+      reason = #{reason,jdbcType=VARCHAR},
+      holiday_num = #{holidayNum,jdbcType=DECIMAL},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      endtime = #{endtime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=VARCHAR},
+      processinstanceId = #{processinstanceid,jdbcType=VARCHAR},
+      details = #{details,jdbcType=VARCHAR}
+    where holiday_id = #{holidayId,jdbcType=VARCHAR}
+  </update>
+</mapper>
